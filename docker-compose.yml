@@ -6,19 +6,52 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: "webui"
-    ports:
-      - "8501:8501"
-    command: [ "streamlit", "run", "./webui/Main.py","--browser.serverAddress=127.0.0.1","--server.enableCORS=True","--browser.gatherUsageStats=False" ]
+    command:
+      [
+        "streamlit",
+        "run",
+        "./webui/Main.py",
+        "--browser.serverAddress=127.0.0.1",
+        "--server.enableCORS=True",
+        "--browser.gatherUsageStats=False",
+      ]
     volumes: *common-volumes
-    restart: always
+    restart: unless-stopped
+    networks:
+      - default
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.studio-${APP_NAME}.rule=Host(`studio.${APP_DOMAIN_NAME}`)"
+
   api:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: "api"
-    ports:
-      - "8080:8080"
-    command: [ "python3", "main.py" ]
+    command: ["python3", "main.py"]
     volumes: *common-volumes
-    restart: always
+    restart: unless-stopped
+    networks:
+      - default
+
+  script:
+    depends_on:
+      - api
+    build:
+      context: script
+    env_file:
+      - .env
+    volumes:
+      - ./storage:/mnt/storage:ro
+      - ./accounts:/mnt/accounts
+    networks:
+      - default
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${APP_NAME}.rule=Host(`${APP_DOMAIN_NAME}`)"
+
+networks:
+  default:
+  traefik:
+    external: true

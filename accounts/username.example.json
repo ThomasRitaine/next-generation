@@ -1,0 +1,37 @@
+
+{
+    "video_subjects": [
+        "extreme animal facts unique traits"
+    ],
+    "video_language": "en-US",
+    "video_aspect": "9:16",
+    "video_concat_mode": "random",
+    "video_clip_duration": 3,
+    "video_count": 1,
+    "video_source": "pexels",
+    "video_materials": [
+        {
+            "provider": "pexels",
+            "url": "",
+            "duration": 0
+        }
+    ],
+    "voice_name": "en-US-JennyNeural-Female",
+    "voice_volume": 1,
+    "voice_rate": 1.2,
+    "bgm_type": "random",
+    "bgm_file": "",
+    "bgm_volume": 0.2,
+    "subtitle_enabled": true,
+    "subtitle_position": "bottom",
+    "custom_position": 70,
+    "font_name": "STHeitiMedium.ttc",
+    "text_fore_color": "#FFFFFF",
+    "text_background_color": "#000000",
+    "font_size": 75,
+    "stroke_color": "#000000",
+    "stroke_width": 2,
+    "n_threads": 2,
+    "paragraph_number": 1,
+    "refresh_token": ""
+}
