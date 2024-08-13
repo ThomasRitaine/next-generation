@@ -6,7 +6,7 @@ from flask import Blueprint, redirect, request, session, jsonify
 import requests
 import json
 
-tiktok_oauth_blueprint = Blueprint('tiktok_oauth', __name__)
+tiktok_oauth_blueprint = Blueprint('tiktok_oauth', __name__, strict_slashes=False)
 
 CLIENT_KEY = os.getenv('OAUTH_TIKTOK_CLIENT_KEY')
 CLIENT_SECRET = os.getenv('OAUTH_TIKTOK_CLIENT_SECRET')
