@@ -5,6 +5,9 @@ import logging
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+CLIENT_KEY = os.getenv('OAUTH_TIKTOK_CLIENT_KEY')
+CLIENT_SECRET = os.getenv('OAUTH_TIKTOK_CLIENT_SECRET')
+
 def get_access_token(refresh_token):
     """
     Refresh the TikTok access token using the provided refresh token.
