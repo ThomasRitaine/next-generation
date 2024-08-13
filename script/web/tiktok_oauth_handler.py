@@ -6,7 +6,7 @@ from flask import Blueprint, redirect, request, session, jsonify
 import requests
 import json
 
-tiktok_oauth_blueprint = Blueprint('tiktok_oauth', __name__, strict_slashes=False)
+tiktok_oauth_blueprint = Blueprint('tiktok_oauth', __name__)
 
 CLIENT_KEY = os.getenv('OAUTH_TIKTOK_CLIENT_KEY')
 CLIENT_SECRET = os.getenv('OAUTH_TIKTOK_CLIENT_SECRET')
@@ -17,7 +17,7 @@ REDIRECT_URI = f'https://{DOMAIN_NAME}/oauth/tiktok/callback/'
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Step 1: Redirect to TikTok's authorization page
-@tiktok_oauth_blueprint.route('/oauth/tiktok')
+@tiktok_oauth_blueprint.route('/oauth/tiktok', strict_slashes=False)
 def oauth():
     state = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
     session['state'] = state
