@@ -25,7 +25,7 @@ def start_oauth_server():
 
 def main():
     # Start the web server in a separate thread
-    boot_web_server()
+    start_oauth_server()
 
     time.sleep(5)  # Give some time for the server to start properly
 
